@@ -1,0 +1,7 @@
+Microsoft Abbreviations
+MSVS - Microsoft Visual Studio
+SSDT-BI - SQL Server Data Tools Business Intelligence previously called BIDS used for building SSIS/SSAS/SSRS
+SS - SQL Server
+SSAS - SS Analysis Services - Analysis
+SSIS - SS Integration Services - ETL
+SSRS - SS Reporting Services - Visualize
