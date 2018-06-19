@@ -1,0 +1,9 @@
+Smart Folder Structure
+!YYYYMMDD Project Name
+Folders - 
+1. Original Data - Do not change any data inside under any circumstances
+2. Prepared Data - Clean data
+3. Uploaded Data - Create subfolder before uploading YYYYMMDD and add uploaded files
+4. Analysis - Scripts/Programs used in analysis
+5. Insights
+6. Final
