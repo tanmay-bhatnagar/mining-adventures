@@ -1,0 +1,78 @@
+USE [DSTRAINING]
+GO
+/****** Object:  StoredProcedure [dbo].[BLD_WRK_FakeNamesCanada]    Script Date: 06-Jul-18 8:48:40 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Tanmay Bhatnagar
+-- Create date: 1st August 2018
+-- Description:	RAW -> WRK 
+-- =============================================
+ALTER PROC [dbo].[BLD_WRK_FakeNamesCanada]
+AS
+BEGIN
+
+-- =============================================
+-- DROP TABLE
+-- =============================================
+IF OBJECT_ID('WRK_FakeNamesCanada') IS NOT NULL
+DROP TABLE WRK_FakeNamesCanada
+
+-- =============================================
+-- CREATE TABLE
+-- =============================================
+
+CREATE TABLE WRK_FakeNamesCanada
+(
+		 [RowNumber]	 INT IDENTITY(1,1)
+		,[Number]		 VARCHAR(100)
+		,[Gender]		 VARCHAR(10)
+		,[GivenName]	 VARCHAR(1000)
+		,[Surname]		 VARCHAR(1000)
+		,[StreetAddress] VARCHAR(1000)
+		,[City]          VARCHAR(1000)
+		,[ZipCode]       VARCHAR(7)
+		,[CountryFull]   VARCHAR(100)
+		,[Birthday]      DATE
+		,[Balance]       FLOAT	
+		,[InterestRate]  FLOAT
+
+)
+
+-- =============================================
+-- TRUNCATE TABLE
+-- =============================================
+
+TRUNCATE TABLE dbo.WRK_FakeNamesCanada
+
+-- =============================================
+-- INSERT RECORDS
+-- =============================================
+
+INSERT INTO WRK_FakeNamesCanada
+(
+	   [Number]
+      ,[Gender]
+      ,[GivenName]
+      ,[Surname]
+      ,[StreetAddress]
+      ,[City]
+      ,[ZipCode]
+      ,[CountryFull]
+      ,[Birthday]
+      ,[Balance]
+      ,[InterestRate]
+)
+SELECT 
+[Number],[Gender] ,[GivenName] ,[Surname],[StreetAddress],[City],[ZipCode],[CountryFull],[Birthday],[Balance],[InterestRate]
+FROM dbo.RAW_FakeNamesCanada_20180701
+--FILTERS
+WHERE ISNUMERIC(Balance) = 1 -- 10 ROWS
+AND LEN(ZipCode) <= 7        -- 2 ROWS
+AND ISDATE(Birthday) = 1     -- 1 ROWS
+END
+-- 199987 Rows Affected
+
+-- SELECT count(*) from dbo.WRK_FakeNamesCanada
