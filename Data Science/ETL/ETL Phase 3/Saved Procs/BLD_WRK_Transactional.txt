@@ -1,0 +1,67 @@
+USE [DSTRAINING]
+GO
+/****** Object:  StoredProcedure [dbo].[BLD_WRK_TransactionalID]    Script Date: 07-Jul-18 9:02:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Tanmay Bhatnagar
+-- Create date: 20180630
+-- Description:	RAW -> WRK
+-- MOD DAT :
+-- =============================================
+
+ALTER PROC [dbo].[BLD_WRK_TransactionalID]
+AS
+BEGIN
+-- =============================================
+-- DROP TABLE
+-- =============================================
+
+IF OBJECT_ID('WRK_TransactionalID') IS NOT NULL
+DROP TABLE WRK_CustomerList
+
+-- =============================================
+-- CREATE TABLE
+-- =============================================
+	
+CREATE TABLE WRK_TransactionalID
+(
+		 [RowNumber]    INT IDENTITY (1,1) 
+		,[Order ID]	    VARCHAR (100)
+		,[Order Date]	DATE
+		,[Customer ID]  VARCHAR(100)
+		,[Region]		VARCHAR(1)
+		,[Rep]			VARCHAR(100)
+		,[Item]			VARCHAR(1000)
+		,[Units]		INT
+		,[Unit Price]	FLOAT	
+
+)
+
+-- =============================================
+-- TRUNCATE
+-- =============================================
+
+TRUNCATE TABLE dbo.WRK_TransactionalID
+	
+-- =============================================
+--INSERT
+-- =============================================
+INSERT INTO	dbo.WRK_TransactionalID
+(
+		 [Order ID]	    
+		,[Order Date]	
+		,[Customer ID]  
+		,[Region]		
+		,[Rep]			
+		,[Item]			
+		,[Units]		
+		,[Unit Price]		
+)
+
+SELECT [Order ID],[Order Date],[Customer ID],[Region],[Rep],[Item],[Units],[Unit Price]
+FROM dbo.RAW_20180630_TransactionalID 	 
+--(43 row(s) affected)
+END
