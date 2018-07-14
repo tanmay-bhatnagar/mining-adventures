@@ -1,0 +1,16 @@
+# Log started 2018-07-14 20:05
+# Record of session commands.  Please note that this will
+# likely require editing if it is to be run as a script.
+open \
+  "C:\Users\Tanmay Bhatnagar\Documents\GitHub\mining-adventures\Data Science\Modelling\Multiple Linear Regression\50-Startups.csv"
+dummify State
+rename 6 NewYork
+rename 7 California
+# model 1
+ols Profit 0 RDSpend Administration NewYork MarketingSpend
+# model 2
+ols Profit 0 RDSpend NewYork MarketingSpend
+# model 3
+ols Profit 0 RDSpend MarketingSpend
+# model 4
+ols Profit 0 RDSpend
