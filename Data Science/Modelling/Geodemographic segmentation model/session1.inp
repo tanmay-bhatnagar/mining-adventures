@@ -1,0 +1,21 @@
+# Log started 2018-07-16 01:21
+# Record of session commands.  Please note that this will
+# likely require editing if it is to be run as a script.
+open \
+  "C:\Users\Tanmay Bhatnagar\Documents\GitHub\mining-adventures\Data Science\Modelling\Geodemographic segmentation model\Churn-Modelling.csv"
+dummify Gender
+dummify Geography
+rename 17 France
+rename 18 Spain
+rename 19 Germany
+rename 15 F
+rename 16 M
+# model 1
+logit Exited 0 CreditScore Age Tenure Balance NumOfProducts HasCrCard \
+  IsActiveMember EstimatedSalary F Spain Germany --p-values
+# model 2
+logit Exited 0 CreditScore Age Tenure Balance NumOfProducts \
+  IsActiveMember F Germany --p-values
+# model 3
+logit Exited 0 CreditScore Age Balance NumOfProducts IsActiveMember F \
+  Germany --p-values
