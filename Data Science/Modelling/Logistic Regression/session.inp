@@ -1,0 +1,10 @@
+# Log started 2018-07-15 23:23
+# Record of session commands.  Please note that this will
+# likely require editing if it is to be run as a script.
+open \
+  "C:\Users\Tanmay Bhatnagar\Documents\GitHub\mining-adventures\Data Science\Modelling\Logistic Regression\Email-Offer.csv"
+dummify Gender
+rename 4 Female
+rename 5 Male
+# model 1
+logit TookAction 0 Age --p-values --verbose
