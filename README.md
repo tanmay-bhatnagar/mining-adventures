@@ -12,6 +12,6 @@ Notepad++
 **FOR DATA MINING**
 Tableau Public
 
-**FOR MODELLING*
+**FOR MODELLING**
 gretl
 
